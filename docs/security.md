@@ -32,3 +32,5 @@ services:
       - "${WG_PORT}:51820/udp"
       - "127.0.0.1:${WG_UI_PORT}:51821/tcp"
 ```
+
+The repository includes this override as [docker-compose.local-ui.yml](../docker-compose.local-ui.yml).
