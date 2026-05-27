@@ -34,6 +34,12 @@ WG_PORT=51820
 INIT_PORT=51820
 ```
 
+Important:
+
+- `INIT_HOST` must be the router public IP or a public DNS name that points to it.
+- Do not use `localhost`, the machine hostname, or a private LAN IP such as `192.168.1.50`.
+- `INIT_PORT` must match `WG_PORT`.
+
 Router forwarding:
 
 ```text
@@ -41,6 +47,27 @@ External UDP 51820 -> Ubuntu Docker host UDP 51820
 ```
 
 Keep the Ubuntu host on a stable LAN IP.
+
+Recommended:
+
+1. Create a DHCP reservation on the router for the laptop or home PC running Docker.
+2. Verify the LAN IP on the Ubuntu host before creating the router rule.
+3. Forward only the WireGuard UDP port for normal VPN use.
+4. Do not forward the web UI port unless you intentionally want remote admin access.
+
+Example:
+
+```text
+Router public IP: 198.51.100.24
+Ubuntu host LAN IP: 192.168.1.50
+Forward: UDP 51820 -> 192.168.1.50:51820
+Set:
+INIT_HOST=198.51.100.24
+WG_PORT=51820
+INIT_PORT=51820
+```
+
+If the public IP changes often, use a dynamic DNS name instead of the raw IP.
 
 ## Split tunnel
 

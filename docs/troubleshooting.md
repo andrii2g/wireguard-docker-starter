@@ -17,6 +17,8 @@ Checklist:
 4. Compose maps `"${WG_PORT}:51820/udp"`.
 5. Client config endpoint uses the expected hostname and port.
 6. Mobile or corporate networks are not blocking UDP.
+7. If the host is behind a home router, the router forwards to the correct current LAN IP of the laptop or PC.
+8. `INIT_HOST` is the public IP or public DNS name, not a private LAN address.
 
 ## Client connects but has no internet
 

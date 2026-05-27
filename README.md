@@ -103,8 +103,26 @@ sudo ufw allow from <your-admin-ip> to any port 51821 proto tcp
 
 For a home server behind a router:
 
+- Set `INIT_HOST` to your router public IP or a dynamic DNS name.
+- Do not set `INIT_HOST` to `localhost`, the laptop hostname, or a private LAN IP like `192.168.x.x`.
 - Forward external UDP `WG_PORT` to the Ubuntu host UDP `WG_PORT`.
 - Ensure the host has a stable LAN IP.
+- Prefer a DHCP reservation on the router so the laptop or PC always gets the same LAN address.
+- Do not forward `WG_UI_PORT` from the router unless you intentionally want remote admin access to the web UI.
+
+Example:
+
+```text
+INIT_HOST=myhomevpn.ddns.net
+WG_PORT=51820
+INIT_PORT=51820
+```
+
+Router forwarding example:
+
+```text
+UDP 51820 on the router -> 192.168.1.50:51820 on the Ubuntu host
+```
 
 ## Useful commands
 
